@@ -1,0 +1,15 @@
+export enum Routes {
+  gyms = "/dashboard/gyms",
+  trainers = "/dashboard/trainers",
+  communities = "/dashboard/communities",
+  message = "/dashboard/message",
+  home = "/dashboard",
+  plans = "/dashboard/plans",
+  "class-details" = "/dashboard/schedule/details",
+  login = "/auth/login",
+  forgotPassword = "/auth/forgot-password",
+  resetPassword = "/auth/reset-password",
+  register = "/auth/signup",
+  activity = "/auth/activity",
+  account = "/dashboard/account",
+}
