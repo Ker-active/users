@@ -105,11 +105,11 @@ export const Classes = ({ isForTrainer = false, classDetails }: IProps) => {
         classContent={classContent as any}
       />
 
-      <section className='flex flex-col'>
+      <section className="flex flex-col">
         {timeTable.map((day) => (
           <div
             key={day.day}
-            className='w-full border-b text-[#1C1939] border-[#E0E0E0] flex flex-row'
+            className="w-full border-b text-[#1C1939] border-[#E0E0E0] flex flex-row"
           >
             <div
               className={cn(
@@ -118,7 +118,7 @@ export const Classes = ({ isForTrainer = false, classDetails }: IProps) => {
             >
               <p>{day.day}</p>
             </div>
-            <div className='flex relative no-scrollbar  overflow-x-auto bg-white gap-[30px] px-4 w-full flex-row items-center'>
+            <div className="flex relative no-scrollbar  overflow-x-auto bg-white gap-[30px] px-4 w-full flex-row items-center">
               {day.classes.map((event, index) => {
                 return (
                   <div
@@ -130,12 +130,12 @@ export const Classes = ({ isForTrainer = false, classDetails }: IProps) => {
                     )}
                     key={index}
                   >
-                    <div className='flex mb-2 flex-row items-center justify-between'>
-                      <p className='font-semibold'>{event.name}</p>
-                      <Menubar className='bg-inherit p-0 h-fit border-0'>
+                    <div className="flex mb-2 flex-row items-center justify-between">
+                      <p className="font-semibold">{event.name}</p>
+                      <Menubar className="bg-inherit p-0 h-fit border-0">
                         <MenubarMenu>
-                          <MenubarTrigger className='p-0  border-0'>
-                            <img src='/dots.svg' alt='Dots Icon' />
+                          <MenubarTrigger className="p-0  border-0">
+                            <img src="/dots.svg" alt="Dots Icon" />
                           </MenubarTrigger>
                           <MenubarContent>
                             <MenubarItem
@@ -143,23 +143,23 @@ export const Classes = ({ isForTrainer = false, classDetails }: IProps) => {
                                 setClassContent(event.content as any);
                                 setIsBookNowModalOpen(true);
                               }}
-                              className='flex flex-row items-center text-sm text-[#344054] justify-between w-full'
+                              className="flex flex-row items-center text-sm text-[#344054] justify-between w-full"
                             >
-                              <div className='flex flex-row items-center gap-2'>
+                              <div className="flex flex-row items-center gap-2">
                                 <FaRegCalendarCheck />
                                 <span>Book Now</span>
                               </div>
-                              <ChevronRight className='ml-auto h-4 w-4' />
+                              <ChevronRight className="ml-auto h-4 w-4" />
                             </MenubarItem>
                             <MenubarSub>
-                              <MenubarSubTrigger className='flex flex-row items-center text-sm text-[#344054] justify-between w-full'>
-                                <div className='flex flex-row items-center gap-2'>
+                              <MenubarSubTrigger className="flex flex-row items-center text-sm text-[#344054] justify-between w-full">
+                                <div className="flex flex-row items-center gap-2">
                                   <IoShareSocial />
                                   <span>Invite Friends</span>
                                 </div>
                               </MenubarSubTrigger>
                               <MenubarSubContent>
-                                <MenubarItem className='w-[364px] text-[#1C1939] flex flex-col items-start space-y-2 rounded-[8px]'>
+                                <MenubarItem className="w-[364px] text-[#1C1939] flex flex-col items-start space-y-2 rounded-[8px]">
                                   <CopyLink />
                                 </MenubarItem>
                               </MenubarSubContent>
@@ -172,19 +172,19 @@ export const Classes = ({ isForTrainer = false, classDetails }: IProps) => {
                         open={isPopOverOpen}
                         onOpenChange={setIsPopOverOpen}
                       >
-                        <PopoverContent className='w-[240px] gap-4 flex flex-col'>
+                        <PopoverContent className="w-[240px] gap-4 flex flex-col">
                           <button
                             onClick={handleBook}
-                            className='flex flex-row items-center text-sm text-[#344054] justify-between w-full'
+                            className="flex flex-row items-center text-sm text-[#344054] justify-between w-full"
                           >
-                            <div className='flex flex-row items-center gap-2'>
+                            <div className="flex flex-row items-center gap-2">
                               <FaRegCalendarCheck />
                               <span>Book Now</span>
                             </div>
                             <MdOutlineKeyboardArrowRight size={20} />
                           </button>
-                          <button className='flex flex-row items-center text-sm text-[#344054] justify-between w-full'>
-                            <div className='flex flex-row items-center gap-2'>
+                          <button className="flex flex-row items-center text-sm text-[#344054] justify-between w-full">
+                            <div className="flex flex-row items-center gap-2">
                               <IoShareSocial />
                               <span>Invite Friends</span>
                             </div>
@@ -193,18 +193,18 @@ export const Classes = ({ isForTrainer = false, classDetails }: IProps) => {
                         </PopoverContent>
                       </Popover>
                     </div>
-                    <div className='flex mb-1 gap-2 items-center flex-row'>
+                    <div className="flex mb-1 gap-2 items-center flex-row">
                       <Clock size={16} />
-                      <span className='text-sm'>{event.time}</span>
+                      <span className="text-sm">{event.time}</span>
                     </div>
 
-                    <div className='flex gap-2 items-center flex-row'>
+                    <div className="flex gap-2 items-center flex-row">
                       {isForTrainer ? (
                         <LiaDumbbellSolid size={18} />
                       ) : (
                         <UserRound size={16} />
                       )}
-                      <span className='text-sm'>{event.trainer}</span>
+                      <span className="text-sm">{event.trainer}</span>
                     </div>
                   </div>
                 );

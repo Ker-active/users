@@ -23,7 +23,12 @@ const fields: FormFieldType<TLogin> = [
     placeholder: "Enter email address",
     type: "email",
   },
-  { name: "password", label: "Password", placeholder: "****", type: "text" },
+  {
+    name: "password",
+    label: "Password",
+    placeholder: "****",
+    type: "password",
+  },
 ];
 
 export default function Login() {
@@ -50,15 +55,15 @@ export default function Login() {
     <>
       <AuthHeader
         desc="Don't have an account?"
-        title='Welcome Back'
+        title="Welcome Back"
         href={Routes.register}
       />
       <Form {...form}>
         <FormSchemaProvider schema={LoginSchema}>
           <form
-            id='formId'
+            id="formId"
             onSubmit={form.handleSubmit(onSubmit)}
-            className='space-y-[15px]'
+            className="space-y-[15px]"
           >
             {fields.map((field) => (
               <FormInput {...field} key={field.name} />
@@ -74,10 +79,10 @@ export default function Login() {
       </Link>
       <footer>
         <Button
-          className='w-full'
+          className="w-full"
           disabled={isPending}
-          form='formId'
-          type='submit'
+          form="formId"
+          type="submit"
         >
           Login
         </Button>

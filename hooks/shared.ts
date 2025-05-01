@@ -89,6 +89,7 @@ export const useGetClasss = () => {
 };
 
 export const useGetSpecificClasss = (id: string | null) => {
+  // console.log({key:CacheKeys.CLASSES, id})
   return useQuery({
     queryKey: [CacheKeys.CLASSES, id],
     queryFn: async () => {
