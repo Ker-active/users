@@ -1,11 +1,8 @@
 "use client";
 
 import { Calendar, dateFnsLocalizer, View } from "react-big-calendar";
-import format from "date-fns/format";
-import parse from "date-fns/parse";
-import startOfWeek from "date-fns/startOfWeek";
-import getDay from "date-fns/getDay";
-import enUS from "date-fns/locale/en-US";
+import { format, parse, startOfWeek, getDay } from "date-fns";
+import { enUS } from "date-fns/locale";
 import { events } from "./event";
 import { CustomToolbar } from "./custom-tool-bar";
 import React, { useCallback, useState } from "react";
@@ -46,9 +43,9 @@ export const MyCalendar = ({ height }: IProps) => {
         date={date}
         localizer={localizer}
         events={events}
-        defaultView='week'
-        startAccessor='start'
-        endAccessor='end'
+        defaultView="week"
+        startAccessor="start"
+        endAccessor="end"
         view={view}
         onNavigate={onNavigate}
         views={["month", "week", "day"]}
@@ -63,3 +60,9 @@ export const MyCalendar = ({ height }: IProps) => {
     </div>
   );
 };
+
+// import format from "date-fns/format";
+// import parse from "date-fns/parse";
+// import startOfWeek from "date-fns/startOfWeek";
+// import getDay from "date-fns/getDay";
+// import enUS from "date-fns/locale/en-US";
