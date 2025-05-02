@@ -30,7 +30,7 @@ export const ClassBookings = () => {
               </p>
               <p className='min-w-fit'>{booking.class.title}</p>
               <p className='underline min-w-fit text-[#377DFF]'>
-                {booking.class.trainer.fullname}
+                {booking.class.trainer?.fullname}
               </p>
 
               <p className='text-[#686868] min-w-fit text-bold font-bold font-inter'>

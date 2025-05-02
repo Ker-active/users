@@ -31,7 +31,6 @@ export const BookNowModal = ({ isOpen, setIsOpen, classContent }: IProps) => {
       // queryClient.invalidateQueries({
       //   queryKey: [CacheKeys.CLASSES, classContent!._id],
       // });
-
       queryClient.invalidateQueries({
         queryKey: [CacheKeys.CLASSES, params.slug],
       });
