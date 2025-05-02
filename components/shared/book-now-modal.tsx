@@ -23,18 +23,13 @@ export const BookNowModal = ({ isOpen, setIsOpen, classContent }: IProps) => {
   const queryClient = useQueryClient();
   const params = useParams();
 
-  // console.log(classContent);
   const { mutate: bookClass, isPending: isBookPending } = useMutation({
     mutationFn: (arg: string) => client.post(`/classes/${arg}/book`),
     onSuccess: () => {
       toast.success("Booked");
-      // queryClient.invalidateQueries({
-      //   queryKey: [CacheKeys.CLASSES, classContent!._id],
-      // });
       queryClient.invalidateQueries({
         queryKey: [CacheKeys.CLASSES, params.slug],
       });
-      // console.log({ cache: CacheKeys.CLASSES, id: params.slug });
 
       setIsOpen(false);
     },
