@@ -89,7 +89,6 @@ export const BookNowModal = ({ isOpen, setIsOpen, classContent }: IProps) => {
 // import { toast } from "sonner";
 // import { client } from "@/lib/api";
 // import { useMutation } from "@tanstack/react-query";
-
 // const { mutate, isPending: isBookPending } = useMutation({
 //   mutationFn: (arg: string) => client.post(`/classes/${arg}/book`),
 //   onSuccess: () => {
@@ -98,8 +97,6 @@ export const BookNowModal = ({ isOpen, setIsOpen, classContent }: IProps) => {
 //   },
 //   onError: (error) => showError(error),
 // });
-
 //   const { data,mutate: bookClass, isPending: isBookPending } = useBookClass();
 // console.log({data})
-
 // if(data)        setIsOpen(false);
