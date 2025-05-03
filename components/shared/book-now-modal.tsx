@@ -22,7 +22,6 @@ interface IProps {
 export const BookNowModal = ({ isOpen, setIsOpen, classContent }: IProps) => {
   const queryClient = useQueryClient();
   const params = useParams();
-
   const { mutate: bookClass, isPending: isBookPending } = useMutation({
     mutationFn: (arg: string) => client.post(`/classes/${arg}/book`),
     onSuccess: () => {
@@ -30,7 +29,6 @@ export const BookNowModal = ({ isOpen, setIsOpen, classContent }: IProps) => {
       queryClient.invalidateQueries({
         queryKey: [CacheKeys.CLASSES, params.slug],
       });
-
       setIsOpen(false);
     },
     onError: (error) => showError(error),
