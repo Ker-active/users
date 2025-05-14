@@ -22,20 +22,15 @@ interface IProps {
 export const BookNowModal = ({ isOpen, setIsOpen, classContent }: IProps) => {
   const queryClient = useQueryClient();
   const params = useParams();
-
-  // console.log(classContent);
   const { mutate: bookClass, isPending: isBookPending } = useMutation({
     mutationFn: (arg: string) => client.post(`/classes/${arg}/book`),
-    onSuccess: () => {
-      toast.success("Booked");
-      // queryClient.invalidateQueries({
-      //   queryKey: [CacheKeys.CLASSES, classContent!._id],
-      // });
+    onSuccess: (data) => {
+      const message = data?.data?.message;
+
+      toast.success(message);
       queryClient.invalidateQueries({
         queryKey: [CacheKeys.CLASSES, params.slug],
       });
-      // console.log({ cache: CacheKeys.CLASSES, id: params.slug });
-
       setIsOpen(false);
     },
     onError: (error) => showError(error),
@@ -96,7 +91,6 @@ export const BookNowModal = ({ isOpen, setIsOpen, classContent }: IProps) => {
 // import { toast } from "sonner";
 // import { client } from "@/lib/api";
 // import { useMutation } from "@tanstack/react-query";
-
 // const { mutate, isPending: isBookPending } = useMutation({
 //   mutationFn: (arg: string) => client.post(`/classes/${arg}/book`),
 //   onSuccess: () => {
@@ -105,8 +99,6 @@ export const BookNowModal = ({ isOpen, setIsOpen, classContent }: IProps) => {
 //   },
 //   onError: (error) => showError(error),
 // });
-
 //   const { data,mutate: bookClass, isPending: isBookPending } = useBookClass();
 // console.log({data})
-
 // if(data)        setIsOpen(false);
