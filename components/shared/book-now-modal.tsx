@@ -24,8 +24,10 @@ export const BookNowModal = ({ isOpen, setIsOpen, classContent }: IProps) => {
   const params = useParams();
   const { mutate: bookClass, isPending: isBookPending } = useMutation({
     mutationFn: (arg: string) => client.post(`/classes/${arg}/book`),
-    onSuccess: () => {
-      toast.success("Booked");
+    onSuccess: (data) => {
+      const message = data?.data?.message;
+
+      toast.success(message);
       queryClient.invalidateQueries({
         queryKey: [CacheKeys.CLASSES, params.slug],
       });
