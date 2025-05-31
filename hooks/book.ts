@@ -12,7 +12,6 @@ export const useBookClass = () => {
       client.post(`/classes/${classId}/book`).then(() => {}),
 
     onSuccess: (_data, classId) => {
-      console.log({})
       queryClient.invalidateQueries({ queryKey: [CacheKeys.CLASSES, classId] });
       queryClient.invalidateQueries({ queryKey: [CacheKeys.CLASSES] });
       toast.success("Booked");

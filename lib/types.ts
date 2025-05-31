@@ -77,6 +77,7 @@ export interface IClass {
   timeTo: string;
   onlineLink: string;
   free: boolean;
+  price: number;
   description: string;
   media: string[];
   createdAt: string;

@@ -6,13 +6,13 @@ import { IClass } from "@/lib/types";
 import { format } from "date-fns";
 import { convert24to12 } from "@/lib";
 import { useBookClass } from "@/hooks/book";
-
 import { showError } from "@/lib";
 import { toast } from "sonner";
 import { client } from "@/lib/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { CacheKeys } from "@/lib";
 import { useParams } from "next/navigation";
+import { useInitiatePayment } from "@/hooks/useInitiatePayment";
 
 interface IProps {
   isOpen: boolean;
@@ -22,12 +22,18 @@ interface IProps {
 export const BookNowModal = ({ isOpen, setIsOpen, classContent }: IProps) => {
   const queryClient = useQueryClient();
   const params = useParams();
+  // const { mutate: initiatePayment, isPending: isInitiatingPayment } =
+  //   useInitiatePayment();
+
   const { mutate: bookClass, isPending: isBookPending } = useMutation({
     mutationFn: (arg: string) => client.post(`/classes/${arg}/book`),
     onSuccess: (data) => {
-      const message = data?.data?.message;
-
-      toast.success(message);
+      const { data: result, message } = data.data;
+      toast.success(message || "Class booked successfully");
+      if (result.authorization_url) {
+        window.location.href = result.authorization_url;
+        return;
+      }
       queryClient.invalidateQueries({
         queryKey: [CacheKeys.CLASSES, params.slug],
       });
@@ -63,14 +69,25 @@ export const BookNowModal = ({ isOpen, setIsOpen, classContent }: IProps) => {
           </h3>
           <p>{classContent?.location}</p>
           <div className="flex flex-row items-center gap-3">
-            <Button
-              disabled={isBookPending}
-              onClick={() => bookClass(classContent!._id)}
-              className="w-auto"
-              size="sm"
-            >
-              Book Now
-            </Button>
+            {classContent?.free ? (
+              <Button
+                disabled={isBookPending}
+                onClick={() => bookClass(classContent!._id)}
+                className="w-auto"
+                size="sm"
+              >
+                free
+              </Button>
+            ) : (
+              <Button
+                disabled={isBookPending}
+                onClick={() => bookClass(classContent!._id)}
+                className="w-auto"
+                size="sm"
+              >
+                {Number(classContent?.price).toLocaleString()} NGN
+              </Button>
+            )}
             <p className="text-sm flex flex-row items-center gap-1 text-[#737373]">
               {classContent?.availableSlot} slots available
             </p>
@@ -86,19 +103,3 @@ export const BookNowModal = ({ isOpen, setIsOpen, classContent }: IProps) => {
     </Dialog>
   );
 };
-
-// import { showError } from "@/lib";
-// import { toast } from "sonner";
-// import { client } from "@/lib/api";
-// import { useMutation } from "@tanstack/react-query";
-// const { mutate, isPending: isBookPending } = useMutation({
-//   mutationFn: (arg: string) => client.post(`/classes/${arg}/book`),
-//   onSuccess: () => {
-//     toast.success("Booked");
-//     setIsOpen(false);
-//   },
-//   onError: (error) => showError(error),
-// });
-//   const { data,mutate: bookClass, isPending: isBookPending } = useBookClass();
-// console.log({data})
-// if(data)        setIsOpen(false);
