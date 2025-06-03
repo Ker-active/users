@@ -81,6 +81,10 @@ export interface IClass {
   description: string;
   media: string[];
   createdAt: string;
+  gym?: {
+    _id: string;
+    fullname: string;
+  };
   __v: number;
 }
 export interface IBookingResponse {

@@ -23,14 +23,14 @@ const links = [
     label: "Trainers",
     icon: "/trainers.svg",
   },
-  {
-    label: "Communities",
-    icon: "/community.svg",
-  },
-  {
-    label: "Message",
-    icon: "/message.svg",
-  },
+  // {
+  //   label: "Communities",
+  //   icon: "/community.svg",
+  // },
+  // {
+  //   label: "Message",
+  //   icon: "/message.svg",
+  // },
   {
     label: "Logout",
     icon: "/members.svg",
@@ -61,7 +61,7 @@ export const Sidebar = ({ className, setIsSidebarOpen }: IProps) => {
 
           return (
             <li
-              className='flex flex-row px-10  items-center gap-4'
+              className="flex flex-row px-10  items-center gap-4"
               key={item.label}
             >
               {item.label != "Logout" && (
@@ -82,7 +82,7 @@ export const Sidebar = ({ className, setIsSidebarOpen }: IProps) => {
                       router.replace(Routes.login);
                     });
                   }}
-                  className='text-red-500 text-base'
+                  className="text-red-500 text-base"
                 >
                   {item.label}
                 </button>
