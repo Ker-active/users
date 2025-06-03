@@ -31,6 +31,8 @@ export const FitnessClasses = ({ className, showAll }: IProps) => {
     );
 
   const displayedData = (showAll ? data?.data : data?.data.slice(0, 4)) || [];
+
+  console.log(displayedData);
   return (
     <ul className={cn("flex flex-row flex-wrap gap-6", className)}>
       {displayedData.map((classData, i) => (
@@ -51,13 +53,16 @@ export const FitnessClasses = ({ className, showAll }: IProps) => {
               <div className="flex items-center gap-2  flex-row">
                 <UserRound size={18} />
                 <p className="line-clamp-1 text-ellipsis">
-                  {classData.trainer.fullname}
+                  {/* {classData.trainer.fullname} */}
+                  {classData.gym?.fullname}
                 </p>
               </div>
             </div>
             <Button
               // href={`${Routes.gyms}/${classData.gym}`}
-              onClick={() => router.push(`${Routes.gyms}/${classData.gym}`)}
+              onClick={() =>
+                router.push(`${Routes.gyms}/${classData.gym?._id}`)
+              }
               className="rounded-[20px] text-sm font-normal border border-brand text-brand"
               size="sm"
               variant={"outline"}
