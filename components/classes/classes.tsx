@@ -47,6 +47,7 @@ interface IClassArray {
     onlineLink: string;
     classId: string;
     content: IClass;
+    shareableLink: string;
   }[];
 }
 
@@ -61,6 +62,7 @@ function formatClass(classDetails: IClassResponse["data"]) {
       classId: item._id,
       onlineLink: item.onlineLink,
       content: item,
+      shareableLink: item.shareableLink,
     };
 
     const existingDay = acc.find((d) => d.day === day);
@@ -160,7 +162,7 @@ export const Classes = ({ isForTrainer = false, classDetails }: IProps) => {
                               </MenubarSubTrigger>
                               <MenubarSubContent>
                                 <MenubarItem className="w-[364px] text-[#1C1939] flex flex-col items-start space-y-2 rounded-[8px]">
-                                  <CopyLink />
+                                  <CopyLink link={event.shareableLink} />
                                 </MenubarItem>
                               </MenubarSubContent>
                             </MenubarSub>
