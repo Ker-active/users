@@ -169,7 +169,6 @@ export const Classes = ({ isForTrainer = false, classDetails }: IProps) => {
                           </MenubarContent>
                         </MenubarMenu>
                       </Menubar>
-
                       <Popover
                         open={isPopOverOpen}
                         onOpenChange={setIsPopOverOpen}
