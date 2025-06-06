@@ -85,6 +85,7 @@ export interface IClass {
     _id: string;
     fullname: string;
   };
+  shareableLink: string;
   __v: number;
 }
 export interface IBookingResponse {
