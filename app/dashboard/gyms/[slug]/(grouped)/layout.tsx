@@ -44,7 +44,7 @@ export default function GymsDetailsLayout({
             <p className={"font-inter text-[12px]"}>4.5</p>
           </div>
         </div>
-        <GymsTrainersDetailsHeader />
+        {/* <GymsTrainersDetailsHeader /> */}
       </header>
       {children}
     </section>

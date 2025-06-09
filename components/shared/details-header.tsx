@@ -15,7 +15,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { CopyLink } from "./copy-link";
+// import { CopyLink } from "./copy-link";
 
 export const GymsTrainersDetailsHeader = () => {
   const pathname = usePathname();
@@ -25,7 +25,7 @@ export const GymsTrainersDetailsHeader = () => {
   const id = params.slug;
 
   return (
-    <div className='flex flex-row gap-[11px] items-center'>
+    <div className="flex flex-row gap-[11px] items-center">
       <Link
         className={buttonVariants({ className: "font-normal", size: "sm" })}
         href={
@@ -41,11 +41,11 @@ export const GymsTrainersDetailsHeader = () => {
           <TooltipTrigger asChild>
             <Button
               style={{ boxShadow: "0px 4px 4px 0px #BED8FF40" }}
-              variant='ghost'
-              size='icon'
-              className='bg-white min-w-[45px]  rounded-[10px] place-self-end'
+              variant="ghost"
+              size="icon"
+              className="bg-white min-w-[45px]  rounded-[10px] place-self-end"
             >
-              <Bookmark size={24} color='#008080' />
+              <Bookmark size={24} color="#008080" />
             </Button>
           </TooltipTrigger>
           <TooltipContent>
@@ -57,18 +57,18 @@ export const GymsTrainersDetailsHeader = () => {
           <PopoverTrigger asChild>
             <Button
               style={{ boxShadow: "0px 4px 4px 0px #BED8FF40" }}
-              variant='ghost'
-              size='icon'
-              className='bg-white min-w-[45px] rounded-[10px] place-self-end'
+              variant="ghost"
+              size="icon"
+              className="bg-white min-w-[45px] rounded-[10px] place-self-end"
             >
-              <Share2 size={24} color='#008080' />
+              <Share2 size={24} color="#008080" />
             </Button>
           </PopoverTrigger>
           <PopoverContent
-            className='w-[364px] text-[#1C1939] space-y-2 rounded-[8px]'
-            side='left'
+            className="w-[364px] text-[#1C1939] space-y-2 rounded-[8px]"
+            side="left"
           >
-            <CopyLink />
+            {/* <CopyLink /> */}
           </PopoverContent>
         </Popover>
 
@@ -84,7 +84,7 @@ export const GymsTrainersDetailsHeader = () => {
                 "bg-white min-w-[45px] rounded-[10px] place-self-end"
               )}
             >
-              <MessageCircleMore size={24} color='#008080' />
+              <MessageCircleMore size={24} color="#008080" />
             </Link>
           </TooltipTrigger>
           <TooltipContent>
