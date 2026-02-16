@@ -1,14 +1,15 @@
 import {
   FitnessClasses,
-  FitnessEvent,
   Gyms,
-  PopularActivities,
   Trainers,
+  // FitnessEvent,
+  // PopularActivities,
+
 } from "@/components/shared";
 import { buttonVariants } from "@/components/ui/button";
 import { Routes } from "@/lib/routes";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 
 export default function Root() {
@@ -49,11 +50,11 @@ export default function Root() {
         <Trainers />
       </article>
 
-      <section className='flex flex-col gap-10'>
+      {/* <section className='flex flex-col gap-10'>
         <h2 className='section-header'>Popular Activities</h2>
         <PopularActivities />
-      </section>
-      <article
+      </section> */}
+      {/* <article
         className='w-full p-[35px] pb-0 xl:pb-[35px] relative rounded-[10px] grid xl:grid-cols-3 h-auto xl:h-[246px] bg-cover bg-no-repeat'
         style={{ backgroundImage: "url(/images/blue-mesh.png)" }}
       >
@@ -71,11 +72,11 @@ export default function Root() {
         <div className='xl:absolute relative right-0 bottom-0  w-[300px] h-[200px] sm:w-[400px] sm:h-[250px] xl:w-[459px] xl:h-[301px]'>
           <Image alt='Community Icon' fill src='/images/like-minded.png' />
         </div>
-      </article>
-      <section className='flex flex-col pb-[100px] gap-10'>
+      </article> */}
+      {/* <section className='flex flex-col pb-[100px] gap-10'>
         <h2 className='section-header'>Fitness Events</h2>
         <FitnessEvent />
-      </section>
+      </section> */}
     </section>
   );
 }
