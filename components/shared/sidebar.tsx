@@ -33,7 +33,7 @@ const links = [
   // },
   {
     label: "Logout",
-    icon: "/members.svg",
+    icon: "/logout.svg",
   },
 ] as const;
 
@@ -58,20 +58,25 @@ export const Sidebar = ({ className, setIsSidebarOpen }: IProps) => {
             item.label === "Dashboard"
               ? "/dashboard"
               : `/dashboard/${item.label.toLowerCase()}`;
+          
+          const isActive =
+            item.label === "Dashboard"
+              ? pathname === href // Dashboard only active if exactly /dashboard
+              : pathname.startsWith(href); // others active if path starts with their href
 
           return (
             <li
               className="flex flex-row px-10  items-center gap-4"
               key={item.label}
             >
-              {item.label != "Logout" && (
+              {/* {item.label != "Logout" && ( */}
                 <Image
                   src={item.icon}
                   width={27}
                   height={27}
                   alt={`${item.label} Icon`}
                 />
-              )}
+              {/* )} */}
 
               {item.label == "Logout" ? (
                 <button
@@ -91,7 +96,7 @@ export const Sidebar = ({ className, setIsSidebarOpen }: IProps) => {
                   onClick={() => setIsSidebarOpen?.(false)}
                   className={cn(
                     "text-[#565C78] text-base",
-                    pathname.includes(href) && "text-brand font-medium"
+                    isActive && "text-brand font-medium"
                   )}
                   href={href}
                 >

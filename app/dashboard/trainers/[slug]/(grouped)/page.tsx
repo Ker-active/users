@@ -57,9 +57,9 @@ export default function TrainersDetails({
               {data?.data.fullname}
             </h2>
             <p className='text-[#737373]'>{data?.data.services.join(", ")}</p>
-            <a className='text-[#3385FF]' href='#'>
+            {/* <a className='text-[#3385FF]' href='#'>
               @ker-Fitness
-            </a>
+            </a> */}
           </header>
           <p className='text-[#6B6868]'>{data?.data.professionalSummary}</p>
           <article className='space-y-[10px] text-[#1C1C1C]'>

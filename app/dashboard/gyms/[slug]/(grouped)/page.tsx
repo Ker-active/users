@@ -12,11 +12,12 @@ export default function GymsDetails() {
 
   return (
     <Tabs defaultValue="overview" className="space-y-8 w-full">
-      <TabsList className="justify-between border-b border-[#E6E6E6] min-w-full">
+      {/* <TabsList className="justify-between border-b border-[#E6E6E6] min-w-full"> */}
+      <TabsList className="justify-start gap-8 border-b border-[#E6E6E6] w-full">
         <TabsTrigger value="overview">Overview</TabsTrigger>
         <TabsTrigger value="classes">Classes</TabsTrigger>
-        <TabsTrigger value="events">Events</TabsTrigger>
-        <TabsTrigger value="review">Review</TabsTrigger>
+        {/* <TabsTrigger value="events">Events</TabsTrigger>
+        <TabsTrigger value="review">Review</TabsTrigger> */}
       </TabsList>
 
       <TabsContent value="overview">

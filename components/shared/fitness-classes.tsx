@@ -34,11 +34,16 @@ export const FitnessClasses = ({ className, showAll }: IProps) => {
 
   console.log(displayedData);
   return (
-    <ul className={cn("flex flex-row flex-wrap gap-6", className)}>
+    <ul
+      className={cn(
+        "grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
+        className
+      )}
+    >
       {displayedData.map((classData, i) => (
         <li
           key={i}
-          className="bg-white w-full sm:w-[280px] text-[#1C1939] rounded-[16px] p-4"
+          className="bg-white w-full text-[#1C1939] rounded-[16px] p-4"
         >
           <article className="flex gap-4 flex-col">
             <h3 className="font-semibold text-lg">{classData.title}</h3>

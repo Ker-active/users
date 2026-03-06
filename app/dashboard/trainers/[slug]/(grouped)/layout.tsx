@@ -24,7 +24,7 @@ export default function TrainersDetailsLayout({
           <ArrowLeft color='#737373' />
         </Button>
 
-        <GymsTrainersDetailsHeader />
+        {/* <GymsTrainersDetailsHeader /> */}
       </header>
       {children}
     </section>
