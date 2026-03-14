@@ -61,8 +61,11 @@ export const BookNowModal = ({ isOpen, setIsOpen, classContent }: IProps) => {
           <h3 className="text-[#008080]  font-semibold font-inter">
             {classContent && (
               <>
-                {format(new Date(classContent.date), "EEEE, MMM d")}{" "}
-                {convert24to12(classContent.timeFrom)} -
+                {format(
+                  new Date(classContent.selectedDate || classContent.date),
+                  "EEEE, MMM d",
+                )}{" "}
+                {convert24to12(classContent.timeFrom)} -{" "}
                 {convert24to12(classContent.timeTo)}
               </>
             )}

@@ -1,8 +1,21 @@
 "use client";
 import { cn, convert24to12 } from "@/lib";
-import { ChevronLeft, ChevronRight, Clock, UserRound } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Clock,
+  UserRound,
+  Calendar,
+} from "lucide-react";
 import { useMemo, useState, useRef, useEffect } from "react";
 import { BookNowModal } from "../shared";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarTrigger,
+} from "@radix-ui/react-menubar";
 import {
   format,
   startOfWeek,
@@ -106,8 +119,8 @@ export const Classes = ({
               key={dayDate.toString()}
               dayDate={dayDate}
               classDetails={classDetails}
-              onBook={(item: any) => {
-                setClassContent(item);
+              onBook={(item: any, selectedDate: Date) => {
+                setClassContent({ ...item, selectedDate });
                 setIsBookNowModalOpen(true);
               }}
             />
@@ -243,13 +256,26 @@ const DayRow = ({ dayDate, classDetails, onBook }: any) => {
                   <h4 className="font-bold text-[#1C1C1C] text-[12px] md:text-[14px] truncate leading-tight pr-1">
                     {item.title}
                   </h4>
-                  <button onClick={() => onBook(item)} className="shrink-0">
-                    <img src="/dots.svg" className="w-3 h-3" alt="opt" />
-                  </button>
+                  <Menubar className="bg-inherit p-0 h-fit border-0">
+                    <MenubarMenu>
+                      <MenubarTrigger className="p-0 border-0">
+                        <img src="/dots.svg" alt="Dots Icon" />
+                      </MenubarTrigger>
+                      <MenubarContent className="bg-white border border-gray-200 rounded-md shadow-md p-2">
+                        <MenubarItem
+                          onClick={() => onBook(item, dayDate)}
+                          className="flex flex-row items-center text-sm gap-2 text-[#344054] w-full hover:bg-gray-100 cursor-pointer p-1 rounded"
+                        >
+                          <Calendar size={16} color="#008080" />
+                          <span>Book Now</span>
+                        </MenubarItem>
+                      </MenubarContent>
+                    </MenubarMenu>
+                  </Menubar>
                 </div>
                 <div className="flex items-center gap-1 text-[10px] md:text-[12px] text-[#4F4F4F] mt-1 font-medium">
                   <Clock size={12} className="text-[#008080]" />{" "}
-                  {convert24to12(item.timeFrom)}
+                  {convert24to12(item.timeFrom)} - {convert24to12(item.timeTo)}
                 </div>
                 <div className="flex items-center gap-1 text-[10px] md:text-[12px] text-[#4F4F4F] truncate">
                   <UserRound size={12} className="text-[#008080]" />{" "}
