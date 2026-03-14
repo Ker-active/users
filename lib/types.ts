@@ -97,7 +97,8 @@ export interface IClass {
     week: string;
     day: string;
   };
-  
+
+  selectedDate: string;
 }
 export interface IBookingResponse {
   success: boolean;
