@@ -42,7 +42,13 @@ const backgrounds = [
   "bg-[#FFE7DA]",
 ];
 
-export const Classes = ({ classDetails = [] }: { classDetails?: any[] }) => {
+export const Classes = ({
+  classDetails = [],
+  isForTrainer = false,
+}: {
+  classDetails?: any[];
+  isForTrainer?: boolean;
+}) => {
   const [currentWeekStart, setCurrentWeekStart] = useState(
     startOfWeek(new Date(), { weekStartsOn: 1 }),
   );
