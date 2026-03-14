@@ -87,6 +87,17 @@ export interface IClass {
   };
   shareableLink: string;
   __v: number;
+
+  rangeStart: string;
+  rangeEnd: string;
+  isRecurring: boolean;
+  recurrencePattern: string;
+  weekDays: string[];
+  monthlyRule?: {
+    week: string;
+    day: string;
+  };
+  
 }
 export interface IBookingResponse {
   success: boolean;
