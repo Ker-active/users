@@ -12,4 +12,5 @@ export enum Routes {
   register = "/auth/signup",
   activity = "/auth/activity",
   account = "/dashboard/account",
+  classes = "/dashboard/classes"
 }

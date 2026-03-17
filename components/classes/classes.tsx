@@ -23,6 +23,7 @@ import {
   isSameDay,
   addWeeks,
   subWeeks,
+  startOfDay,
 } from "date-fns";
 
 const getOccurrenceOfDay = (date: Date) => {
@@ -142,32 +143,36 @@ const DayRow = ({ dayDate, classDetails, onBook }: any) => {
 
   const filteredClasses = useMemo(() => {
     return classDetails.filter((item: any) => {
-      if (!item.isRecurring && item.date)
-        return isSameDay(new Date(item.date), dayDate);
-      if (item.isRecurring) {
-        const start = new Date(item.rangeStart);
-        const end = new Date(item.rangeEnd);
-        if (dayDate < start || dayDate > end) return false;
+      const targetDate = startOfDay(dayDate);
 
-        if (item.recurrencePattern === "DAILY") {
-          return true;
-        } else if (item.recurrencePattern === "WEEKLY") {
+      if (!item.isRecurring && item.date) {
+        return isSameDay(new Date(item.date), targetDate);
+      }
+
+      if (item.isRecurring) {
+        const start = startOfDay(new Date(item.rangeStart));
+        const end = startOfDay(new Date(item.rangeEnd));
+
+        if (targetDate < start || targetDate > end) return false;
+
+        if (item.recurrencePattern === "DAILY") return true;
+
+        if (item.recurrencePattern === "WEEKLY") {
           return item.weekDays?.some(
             (d: string) => d.toLowerCase() === dayName.toLowerCase(),
           );
-        } else if (item.recurrencePattern === "MONTHLY") {
-          const occurrence = getOccurrenceOfDay(dayDate);
+        }
 
+        if (item.recurrencePattern === "MONTHLY") {
+          const occurrence = getOccurrenceOfDay(targetDate);
           const dayMatches =
             occurrence.day.toLowerCase() ===
             item.monthlyRule?.day?.toLowerCase();
           const weekMatches =
             occurrence.week === item.monthlyRule?.week ||
             (item.monthlyRule?.week === "Last" && occurrence.isLast);
-
           return dayMatches && weekMatches;
         }
-        return false;
       }
       return false;
     });
@@ -179,30 +184,14 @@ const DayRow = ({ dayDate, classDetails, onBook }: any) => {
     const scrollEl = scrollRef.current;
     if (!scrollEl) return;
 
-    let requestTick = false;
-
     const updatePill = () => {
       const pillEl = pillRef.current;
-      if (!pillEl) {
-        requestTick = false;
-        return;
-      }
-
+      if (!pillEl) return;
       const { scrollLeft, scrollWidth, clientWidth } = scrollEl;
       const maxScroll = scrollWidth - clientWidth;
       const pct = maxScroll > 0 ? scrollLeft / maxScroll : 0;
-      const railWidth = scrollEl.getBoundingClientRect().width;
-      const available = Math.max(railWidth - PILL_WIDTH, 0);
-
+      const available = Math.max(scrollEl.offsetWidth - PILL_WIDTH, 0);
       pillEl.style.transform = `translateX(${pct * available}px)`;
-      requestTick = false;
-    };
-
-    const onScroll = () => {
-      if (!requestTick) {
-        window.requestAnimationFrame(updatePill);
-        requestTick = true;
-      }
     };
 
     const checkOverflow = () => {
@@ -210,13 +199,12 @@ const DayRow = ({ dayDate, classDetails, onBook }: any) => {
       updatePill();
     };
 
-    scrollEl.addEventListener("scroll", onScroll, { passive: true });
-    checkOverflow();
-    updatePill();
+    scrollEl.addEventListener("scroll", updatePill, { passive: true });
     window.addEventListener("resize", checkOverflow);
+    checkOverflow();
 
     return () => {
-      scrollEl.removeEventListener("scroll", onScroll);
+      scrollEl.removeEventListener("scroll", updatePill);
       window.removeEventListener("resize", checkOverflow);
     };
   }, [filteredClasses]);
@@ -246,7 +234,7 @@ const DayRow = ({ dayDate, classDetails, onBook }: any) => {
           {filteredClasses.length > 0 ? (
             filteredClasses.map((item: any, index: number) => (
               <div
-                key={item._id}
+                key={`${item._id}-${dayDate.getTime()}`}
                 className={cn(
                   "min-w-[140px] md:min-w-[160px] p-3 rounded-xl flex flex-col shadow-sm h-[110px] justify-center",
                   backgrounds[index % backgrounds.length],
@@ -261,7 +249,7 @@ const DayRow = ({ dayDate, classDetails, onBook }: any) => {
                       <MenubarTrigger className="p-0 border-0">
                         <img src="/dots.svg" alt="Dots Icon" />
                       </MenubarTrigger>
-                      <MenubarContent className="bg-white border border-gray-200 rounded-md shadow-md p-2">
+                      <MenubarContent className="bg-white border border-gray-200 rounded-md shadow-md p-2 z-50">
                         <MenubarItem
                           onClick={() => onBook(item, dayDate)}
                           className="flex flex-row items-center text-sm gap-2 text-[#344054] w-full hover:bg-gray-100 cursor-pointer p-1 rounded"

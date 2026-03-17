@@ -95,17 +95,17 @@ export default function TrainersDetails({
       <section className='flex flex-col gap-6'>
         <header className='w-full flex-row flex items-center justify-between'>
           <h2 className='section-header'>Classes</h2>
-          <Button className='w-fit px-6'>Available Slots</Button>
+          {/* <Button className='w-fit px-6'>Available Slots</Button> */}
         </header>
         <Classes classDetails={classes?.data || []} isForTrainer />
       </section>
-      <section className='flex flex-col gap-6'>
+      {/* <section className='flex flex-col gap-6'>
         <header className='w-full justify-between flex flex-row'>
           <h2 className='section-header'>Reviews</h2>
           <AddReview className='bg-brand text-white' />
         </header>
         <ReviewComponent hideAddButton />
-      </section>
+      </section> */}
       <section className='flex flex-col gap-6'>
         <h2 className='section-header'>Similar Fitness Trainer</h2>
         <Trainers />

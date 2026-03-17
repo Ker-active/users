@@ -91,9 +91,9 @@ export const BookNowModal = ({ isOpen, setIsOpen, classContent }: IProps) => {
                 {Number(classContent?.price).toLocaleString()} NGN
               </Button>
             )}
-            <p className="text-sm flex flex-row items-center gap-1 text-[#737373]">
+            {/* <p className="text-sm flex flex-row items-center gap-1 text-[#737373]">
               {classContent?.availableSlot} slots available
-            </p>
+            </p> */}
           </div>
           <section className="space-y-2 mt-[28px] text-[#1C1939]  ">
             <h3 className="font-semibold">Description</h3>
